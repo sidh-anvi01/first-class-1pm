@@ -1,0 +1,35 @@
+
+git init : used to initiate the git inside the project 
+
+git workflow : 
+
+git add : used to add in the staging area  : 
+
+git commit : used to push the code inside the local repo : 
+
+
+git push : push the code on the github repo : 
+
+
+
+
+how to push on github ;
+
+
+we have to rename the branch master to main
+cmd :-
+git branch -M main 
+
+we have to connect the repo url 
+cmd:- 
+git remote add origin <url>
+
+
+
+now push the code if the first time commit : 
+
+cmd :-
+git push -u origin main 
+
+
+now how to push changed code project files : 
