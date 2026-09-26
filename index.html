@@ -39,6 +39,14 @@
         .step p { min-height: 38px; margin: 0 0 14px; color: var(--muted); font-size: 12px; }
         pre { overflow-x: auto; margin: 0; padding: 11px; background: #e9ebe4; color: #30413a; font: 11px/1.8 var(--mono); }
         footer { display: flex; justify-content: space-between; gap: 16px; padding: 17px 0 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+        .keep-going { padding: 28px 0 54px; border-top: 1px solid var(--line); }
+        .routine { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .routine-step { padding: 18px 18px 20px 0; }
+        .routine-step + .routine-step { padding-left: 18px; border-left: 1px solid var(--line); }
+        .routine-label { margin: 0 0 14px; color: var(--green); font: 11px var(--mono); }
+        .routine-step p { min-height: 38px; margin: 0 0 14px; color: var(--muted); font-size: 12px; }
+        .tip { margin: 20px 0 0; padding-left: 14px; border-left: 3px solid var(--green); color: var(--muted); font-size: 12px; }
+        .tip strong { color: var(--ink); }
         @media (max-width: 760px) {
             .shell { width: min(100% - 36px, 560px); }
             .intro { grid-template-columns: 1fr; gap: 30px; padding: 48px 0 40px; }
@@ -49,6 +57,10 @@
             .step:nth-child(3) { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
             .step:nth-child(4) { border-top: 1px solid var(--line); }
             .step p { min-height: 0; }
+            .routine { grid-template-columns: 1fr; }
+            .routine-step, .routine-step + .routine-step { padding: 16px 0; border-left: 0; }
+            .routine-step + .routine-step { border-top: 1px solid var(--line); }
+            .routine-step p { min-height: 0; }
         }
         @media (max-width: 430px) {
             nav { gap: 12px; font-size: 12px; }
@@ -60,8 +72,8 @@
 <body>
     <div class="shell">
         <header>
-            <a class="brand" href="#top"><span class="mark" aria-hidden="true">&gt;_</span> Fieldnotes / DevOps</a>
-            <nav aria-label="Main navigation"><a href="#workflow">Workflow</a><a href="#commands">Commands</a></nav>
+            <a class="brand" href="#top"><span class="mark" aria-hidden="true">&gt;_</span> AiPower / DevOps</a>
+            <nav aria-label="Main navigation"><a href="#workflow">Workflow</a><a href="#commands">Commands</a><a href="#next-time">Next time</a></nav>
         </header>
         <main id="top">
             <section class="intro" aria-labelledby="page-title">
@@ -102,6 +114,31 @@ git remote add origin &lt;url&gt;</code></pre>
                         <pre><code>git push -u origin main</code></pre>
                     </article>
                 </div>
+            </section>
+            <section class="keep-going" id="next-time" aria-labelledby="next-title">
+                <div class="section-head"><h2 id="next-title">After the first push</h2><p>Repeat this loop whenever you make changes.</p></div>
+                <div class="routine">
+                    <article class="routine-step">
+                        <p class="routine-label">01 / REVIEW</p>
+                        <h3>Check your changes</h3>
+                        <p>See which files Git has noticed before staging them.</p>
+                        <pre><code>git status</code></pre>
+                    </article>
+                    <article class="routine-step">
+                        <p class="routine-label">02 / SAVE</p>
+                        <h3>Commit a snapshot</h3>
+                        <p>Stage your work and give the change a clear message.</p>
+                        <pre><code>git add .
+git commit -m "Describe the change"</code></pre>
+                    </article>
+                    <article class="routine-step">
+                        <p class="routine-label">03 / SHARE</p>
+                        <h3>Push updates</h3>
+                        <p>Send your new commit to the connected GitHub repo.</p>
+                        <pre><code>git push</code></pre>
+                    </article>
+                </div>
+                <p class="tip"><strong>Tip:</strong> When connecting an existing local project, create an empty GitHub repository. Skip adding a README, .gitignore, or license on GitHub so the first push stays straightforward.</p>
             </section>
         </main>
         <footer><span>FIELDNOTES / DEVOPS</span><span>Small steps. Clear history. Shared code.</span></footer>

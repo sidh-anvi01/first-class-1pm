@@ -33,3 +33,9 @@ git push -u origin main
 
 
 now how to push changed code project files : 
+
+
+
+
+
+this is our push code ofr every time 
