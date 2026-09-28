@@ -47,8 +47,13 @@
         .routine-step p { min-height: 38px; margin: 0 0 14px; color: var(--muted); font-size: 12px; }
         .tip { margin: 20px 0 0; padding-left: 14px; border-left: 3px solid var(--green); color: var(--muted); font-size: 12px; }
         .tip strong { color: var(--ink); }
+        .undo { padding: 28px 0 54px; border-top: 1px solid var(--line); }
+        .undo-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .undo-item { padding: 18px 22px 20px 0; }
+        .undo-item + .undo-item { padding-left: 22px; border-left: 1px solid var(--line); }
+        .undo-item p { min-height: 38px; margin: 0 0 14px; color: var(--muted); font-size: 12px; }
         @media (max-width: 760px) {
-            .shell { width: min(100% - 36px, 560px); }
+            .shell { width: min(calc(100% - 36px), 560px); }
             .intro { grid-template-columns: 1fr; gap: 30px; padding: 48px 0 40px; }
             .visual { min-height: 260px; margin-right: 10px; }
             .steps { grid-template-columns: repeat(2, 1fr); }
@@ -61,6 +66,9 @@
             .routine-step, .routine-step + .routine-step { padding: 16px 0; border-left: 0; }
             .routine-step + .routine-step { border-top: 1px solid var(--line); }
             .routine-step p { min-height: 0; }
+            .undo-grid { grid-template-columns: 1fr; }
+            .undo-item, .undo-item + .undo-item { padding: 16px 0; border-left: 0; }
+            .undo-item + .undo-item { border-top: 1px solid var(--line); }
         }
         @media (max-width: 430px) {
             nav { gap: 12px; font-size: 12px; }
@@ -139,6 +147,26 @@ git commit -m "Describe the change"</code></pre>
                     </article>
                 </div>
                 <p class="tip"><strong>Tip:</strong> When connecting an existing local project, create an empty GitHub repository. Skip adding a README, .gitignore, or license on GitHub so the first push stays straightforward.</p>
+            </section>
+            <section class="undo" id="undo" aria-labelledby="undo-title">
+                <div class="section-head"><h2 id="undo-title">Undo changes</h2><p>Choose the command based on what you need to undo.</p></div>
+                <div class="undo-grid">
+                    <article class="undo-item">
+                        <h3>Restore a file</h3>
+                        <p>Discard unstaged edits in a file and return it to the last committed version. This replaces your current edits.</p>
+                        <pre><code>git restore &lt;file&gt;</code></pre>
+                        <p>To unstage a file but keep its edits:</p>
+                        <pre><code>git restore --staged &lt;file&gt;</code></pre>
+                    </article>
+                    <article class="undo-item">
+                        <h3>Revert a commit</h3>
+                        <p>Create a new commit that reverses an earlier commit. This preserves history and is the safer choice for changes already pushed.</p>
+                        <pre><code>git revert &lt;commit-id&gt;</code></pre>
+                        <p>Then share the new undo commit:</p>
+                        <pre><code>git push</code></pre>
+                    </article>
+                </div>
+                <p class="tip"><strong>Remember:</strong> <code>restore</code> changes files or staging; <code>revert</code> adds a commit to history. Check <code>git status</code> before undoing anything.</p>
             </section>
         </main>
         <footer><span>FIELDNOTES / DEVOPS</span><span>Small steps. Clear history. Shared code.</span></footer>
